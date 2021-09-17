@@ -52,6 +52,10 @@ io.on('connection', (socket) => {
     socket.in(data.roomCode).emit('update roundAnswers', data.answerList);
   });
 
+  socket.on('update gameData', (data) => {
+    socket.in(data.roomCode).emit('update gameData', data.gameData);
+  });
+
   socket.on('disconnect', () => {
     console.log('Someone disconnected from the socket..');
   });
