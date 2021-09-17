@@ -21,13 +21,35 @@ io.on('connection', (socket) => {
   });
 
   socket.on('player update', (data) => {
-    console.log(data.playerList);
+    // console.log(data.playerList);
     socket.in(data.roomName).emit('updated players', data.playerList);
   });
 
   socket.on('start game', (data) => {
-    console.log(data.roomCode);
+    // console.log(data.roomCode);
     socket.in(data.roomCode).emit('start game');
+  });
+
+  socket.on('book list', (data) => {
+    socket.in(data.roomCode).emit('book list', data.bookList);
+  });
+
+  socket.on('answer', (data) => {
+    console.log(data.answer);
+    socket.in(data.roomCode).emit('answer', data);
+  });
+
+  socket.on('submit guess', (data) => {
+    console.log(data.guess);
+    socket.in(data.roomCode).emit('submit guess', data);
+  });
+
+  socket.on('update status', (data) => {
+    socket.in(data.roomCode).emit('update status', data.status);
+  });
+
+  socket.on('update roundAnswers', (data) => {
+    socket.in(data.roomCode).emit('update roundAnswers', data.answerList);
   });
 
   socket.on('disconnect', () => {
