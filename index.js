@@ -52,6 +52,10 @@ io.on('connection', (socket) => {
     socket.in(data.roomCode).emit('update roundAnswers', data.answerList);
   });
 
+  socket.on('update roundGuesses', (data) => {
+    socket.in(data.roomCode).emit('update roundGuesses', data.guessList);
+  });
+
   socket.on('update gameData', (data) => {
     socket.in(data.roomCode).emit('update gameData', data.gameData);
   });
