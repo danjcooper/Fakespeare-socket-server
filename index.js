@@ -12,7 +12,7 @@ const io = require('socket.io')(httpServer, {
 
 io.on('connection', (socket) => {
   console.log('hello, new connection ');
-  socket.emit('connect');
+  socket.emit('hey');
 
   socket.on('joinRoom', (data) => {
     socket.join(data.roomName);
